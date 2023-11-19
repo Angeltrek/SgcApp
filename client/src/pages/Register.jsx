@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import Axios from "axios";
 
 const Login = () => {
   const [UserName, setUserName] = useState("");
   const [Email, setEmail] = useState("");
   const [CurrentPassword, setCurrentPassword] = useState("");
-  const [UsersList, setUsersList] = useState("");
-
-  useEffect(() => {
-    Axios.get("http://localhost:5000/api/get").then((response) => {
-      setUsersList(response.data);
-    });
-  }, []);
 
   const submitUserData = () => {
     Axios.post("http://localhost:5000/api/insert", {
@@ -19,7 +12,7 @@ const Login = () => {
       Email: Email,
       CurrentPassword: CurrentPassword,
     }).then(() => {
-      alert("Succesful Insert.");
+      alert('Succesful Insert.');
     });
   };
 
@@ -96,11 +89,10 @@ const Login = () => {
           </div>
 
           <div className="button-field">
-            <input type="button" id="register" value="Registrarse" />
             <input
               type="button"
-              id="login"
-              value="Iniciar Sesión"
+              id="register"
+              value="Registrarse"
               onClick={submitUserData}
             />
           </div>
