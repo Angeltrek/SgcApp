@@ -193,6 +193,89 @@
   text-decoration: underline;
 }
 
+/* Navbar lateral */
+
+.mySensors {
+  overflow: hidden;
+}
+
+.top-container {
+  width: 100%;
+  background: var(--dark-green);
+  display: flex;
+  justify-content: center;
+}
+
+.toggle-container {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lateral-toggle {
+  color: #fff;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+.lateral-toggle:hover {
+  cursor: pointer;
+}
+
+.sideNavbar {
+  width: 20rem;
+  height: 100vh;
+  position: fixed;
+  background: var(--grey);
+  overflow: auto;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%);
+  z-index: 100;
+}
+
+.show-lateral-menu {
+  transform: translateX(0);
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sensorButton {
+  padding: 1rem 0;
+  border-radius: 0.25rem;
+  width: 100%;
+  font-family: 'Nunito Sans', sans-serif;
+  border: none;
+  margin: 1rem 0;
+  background: #fff;
+}
+
+.sensorButton:hover {
+  cursor: pointer;
+}
+
+/* Sensor Info Container*/
+
+.sensorInfoContainer {
+  width: 100%;
+  padding: 1rem;
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  z-index: -100;
+}
+
+.sideNavbar.show-lateral-menu + .sensorInfoContainer {
+  transform: translateX(20rem);
+  transition: transform 0.3s ease-in-out;
+}
+
 /* Estilos del banner */
 .banner {
   width: 100%;
@@ -581,5 +664,9 @@ footer {
   .email-contact-section h3,
   .email-contact-section i {
     font-size: 1.25rem;
+  }
+
+  .sideNavbar {
+    width: 100vw;
   }
 }

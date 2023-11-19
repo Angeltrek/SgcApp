@@ -22,7 +22,7 @@ const Login = () => {
     );
 
     if (userExists) {
-      navigate("/");
+      navigate("/my-sensors");
     } else {
       setError("Usuario o contraseña invalidos");
       setTimeout(() => {
