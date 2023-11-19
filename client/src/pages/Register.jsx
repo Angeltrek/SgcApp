@@ -1,10 +1,14 @@
-import React,{ useState, useEffect } from "react";
+import React, { useState } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [UserName, setUserName] = useState("");
   const [Email, setEmail] = useState("");
   const [CurrentPassword, setCurrentPassword] = useState("");
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const submitUserData = () => {
     Axios.post("http://localhost:5000/api/insert", {
@@ -12,24 +16,26 @@ const Login = () => {
       Email: Email,
       CurrentPassword: CurrentPassword,
     }).then(() => {
-      alert('Succesful Insert.');
+      navigate("/login");
+    }).catch((error) => {
+      setError("Error en el registro.");
+      setTimeout(() => {
+        setError(null);
+      }, 3000); // Restablecer el estado de error después de 3 segundos
     });
+  };
+
+  const goToLogin = () => {
+    navigate("/login");
   };
 
   return (
     <div className="container">
       <div className="login">
         <div className="login-form">
-          <h1 className="sgc-title">SGC</h1>
-
-          <div className="google-container">
-            <img
-              className="google-logo"
-              src="https://seeklogo.com/images/G/google-logo-28FA7991AF-seeklogo.com.png"
-              alt="Google Logo"
-            />
-            <button className="google-sign-in">Ingresa con Google</button>
-          </div>
+        <Link to="/" className="sgc-title">
+             SGC
+          </Link>
 
           <div className="input-field">
             <label htmlFor="username">Usuario:</label>
@@ -92,10 +98,17 @@ const Login = () => {
             <input
               type="button"
               id="register"
+              value="Iniciar Sesión"
+              onClick={goToLogin}
+            />
+            <input
+              type="button"
+              id="login"
               value="Registrarse"
               onClick={submitUserData}
             />
           </div>
+          {error && <p className="error-message">{error}</p>}
         </div>
       </div>
     </div>

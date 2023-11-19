@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [UserName, setUserName] = useState("");
   const [Email, setEmail] = useState("");
   const [CurrentPassword, setCurrentPassword] = useState("");
   const [UsersList, setUsersList] = useState("");
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     Axios.get("http://localhost:5000/api/get").then((response) => {
@@ -14,48 +17,31 @@ const Login = () => {
   }, []);
 
   const submitUserData = () => {
-    Axios.post("http://localhost:5000/api/insert", {
-      UserName: UserName,
-      Email: Email,
-      CurrentPassword: CurrentPassword,
-    }).then(() => {
-      alert("Succesful Insert.");
-    });
+    const userExists = UsersList.some(
+      (user) => user.Email === Email && user.CurrentPassword === CurrentPassword
+    );
+
+    if (userExists) {
+      navigate("/");
+    } else {
+      setError("Usuario o contraseña invalidos");
+      setTimeout(() => {
+        setError(null);
+      }, 3000); // Restablecer el estado de error después de 3 segundos
+    }
+  };
+
+  const goToRegister = () => {
+    navigate("/register");
   };
 
   return (
     <div className="container">
       <div className="login">
         <div className="login-form">
-          <h1 className="sgc-title">SGC</h1>
-
-          <div className="google-container">
-            <img
-              className="google-logo"
-              src="https://seeklogo.com/images/G/google-logo-28FA7991AF-seeklogo.com.png"
-              alt="Google Logo"
-            />
-            <button className="google-sign-in">Ingresa con Google</button>
-          </div>
-
-          <div className="input-field">
-            <label htmlFor="username">Usuario:</label>
-            <div className="input-container">
-              <img
-                src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
-                alt="Username Icon"
-                className="icon"
-              />
-              <input
-                type="text"
-                id="username"
-                name="username"
-                onChange={(e) => {
-                  setUserName(e.target.value);
-                }}
-              />
-            </div>
-          </div>
+          <Link to="/" className="sgc-title">
+             SGC
+          </Link>
 
           <div className="input-field">
             <label htmlFor="email">Correo electrónico:</label>
@@ -69,6 +55,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 name="email"
+                className={error ? "error-input" : ""}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -88,6 +75,7 @@ const Login = () => {
                 type="password"
                 id="password"
                 name="password"
+                className={error ? "error-input" : ""}
                 onChange={(e) => {
                   setCurrentPassword(e.target.value);
                 }}
@@ -96,7 +84,12 @@ const Login = () => {
           </div>
 
           <div className="button-field">
-            <input type="button" id="register" value="Registrarse" />
+            <input
+              type="button"
+              id="register"
+              value="Registrarse"
+              onClick={goToRegister}
+            />
             <input
               type="button"
               id="login"
@@ -104,6 +97,7 @@ const Login = () => {
               onClick={submitUserData}
             />
           </div>
+          {error && <p className="error-message">{error}</p>}
         </div>
       </div>
     </div>

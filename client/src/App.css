@@ -39,6 +39,7 @@
   text-align: center;
   padding: 3rem;
   width: 30%;
+  position: relative;
 }
 
 .sgc-title {
@@ -47,6 +48,7 @@
   font-weight: 700;
   font-size: 3.75rem;
   margin-bottom: 1.5rem;
+  text-decoration: none;
 }
 
 /* Estilos para el botón de inicio de sesión con Google */
@@ -84,6 +86,19 @@
   text-align: center;
   width: 80%;
   height: 2rem;
+}
+
+.error-input {
+  color: red;
+  border: 2px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.75rem;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
 }
 
 .input-container {
