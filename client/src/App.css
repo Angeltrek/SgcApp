@@ -11,6 +11,8 @@
   --green: #609966;
   --light-green: #9dc08b;
   --grey: #edf1d6;
+  --red: rgb(229, 67, 67);
+  --blue: rgb(67, 117, 244);
 }
 /*
 .landscape {
@@ -66,7 +68,7 @@
 
 .google-sign-in {
   background: #fff;
-  border: 2px solid #d9d9d9;
+  border: 2px solid var(--grey);
   cursor: pointer;
   font-family: 'Nunito Sans', sans-serif;
   outline: none;
@@ -81,7 +83,7 @@
 }
 
 .input-field input {
-  border: 2px solid #d9d9d9;
+  border: 2px solid var(--grey);
   outline: none;
   text-align: center;
   width: 80%;
@@ -89,12 +91,12 @@
 }
 
 .error-input {
-  color: red;
-  border: 2px solid red;
+  color: var(--red);
+  border: 2px solid var(--red);
 }
 
 .error-message {
-  color: red;
+  color: var(--red);
   font-size: 0.75rem;
   position: absolute;
   bottom: 1rem;
@@ -204,6 +206,8 @@
   background: var(--dark-green);
   display: flex;
   justify-content: center;
+  position: fixed;
+  z-index: 100;
 }
 
 .toggle-container {
@@ -218,6 +222,7 @@
   border: none;
   font-size: 1rem;
   margin-right: 1rem;
+  visibility: hidden;
 }
 
 .lateral-toggle:hover {
@@ -231,8 +236,8 @@
   background: var(--grey);
   overflow: auto;
   transition: transform 0.3s ease-in-out;
-  transform: translateX(-100%);
   z-index: 100;
+  margin-top: 4.25rem;
 }
 
 .show-lateral-menu {
@@ -257,6 +262,23 @@
   background: #fff;
 }
 
+.addSensor {
+  background: transparent;
+  color: var(--green);
+}
+
+.deleteSensor {
+  background: var(--red);
+  color: #fff;
+  width: 10rem;
+}
+
+.modifySensor {
+  background: var(--blue);
+  color: #fff;
+  width: 10rem;
+}
+
 .sensorButton:hover {
   cursor: pointer;
 }
@@ -264,15 +286,40 @@
 /* Sensor Info Container*/
 
 .sensorInfoContainer {
-  width: 100%;
+  margin-top: 4.25rem;
+  width: (100% - 20rem);
   padding: 1rem;
   transition: transform 0.3s ease-in-out;
-  overflow: hidden;
+  font-family: 'Nunito Sans', sans-serif;
   z-index: -100;
+  transform: translateX(20rem);
+}
+
+.info-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.info-container h3 {
+  width: 70%;
+  color: var(--dark-green);
+  margin: 2rem 0;
+}
+
+.info-container p {
+  width: 70%;
+  margin-bottom: 1rem;
+}
+
+.info-container img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
 }
 
 .sideNavbar.show-lateral-menu + .sensorInfoContainer {
-  transform: translateX(20rem);
   transition: transform 0.3s ease-in-out;
 }
 
@@ -517,6 +564,42 @@ footer {
   position: absolute;
 }
 
+/* Histograma */
+
+.histogram {
+  margin: 2rem 0;
+}
+
+.histogram h3 {
+  color: var(--dark-green);
+}
+
+.histogram-container {
+  width: 70%; /* Ajusta el ancho según tus necesidades */
+  height: auto; /* Ajusta la altura según tus necesidades */
+  overflow: hidden; /* Evita que el gráfico se desborde si es necesario */
+}
+
+.parameter-container {
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.parameter-container h4 {
+  color: var(--green);
+}
+
+.parameter-input {
+  border: 2px solid var(--grey);
+  padding: 0.25rem 0;
+  margin: 0.25rem 0;
+  outline: none;
+  height: 2rem;
+}
+
 /* Estilos para la barra de desplazamiento */
 /* Estilo de la barra de desplazamiento */
 ::-webkit-scrollbar {
@@ -553,10 +636,7 @@ footer {
     width: 100%;
   }
 
-  .google-logo {
-    left: 10px;
-  }
-
+  .google-logo,
   .icon {
     left: 10px;
   }
@@ -570,10 +650,7 @@ footer {
     margin-top: 1rem;
   }
 
-  .thumbnail {
-    width: 80px;
-  }
-
+  .thumbnail,
   .rounded-thumbnail {
     width: 80px;
   }
@@ -603,7 +680,7 @@ footer {
 
   .title {
     padding: 1rem 0;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 
   .subtitle {
@@ -611,7 +688,7 @@ footer {
   }
 
   .text {
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
 
   .nav-item-container {
@@ -668,5 +745,31 @@ footer {
 
   .sideNavbar {
     width: 100vw;
+    transform: translateX(-100%);
+  }
+
+  .show-lateral-menu {
+    transform: translateX(0);
+  }
+
+  .lateral-toggle {
+    visibility: visible;
+  }
+
+  .sensorInfoContainer {
+    transform: translateX(0);
+  }
+
+  .info-container {
+    width: 100%;
+  }
+
+  .histogram-container {
+    width: 100%;
+  }
+
+  .parameter-container {
+    width: 100%;
+    flex-direction: column;
   }
 }

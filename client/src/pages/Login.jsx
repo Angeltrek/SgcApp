@@ -11,17 +11,18 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    Axios.get("http://localhost:5000/api/get").then((response) => {
+    Axios.get("http://localhost:5000/api/login").then((response) => {
       setUsersList(response.data);
     });
   }, []);
 
   const submitUserData = () => {
-    const userExists = UsersList.some(
+    const userExists = UsersList && UsersList.find(
       (user) => user.Email === Email && user.CurrentPassword === CurrentPassword
     );
-
+    
     if (userExists) {
+      Axios.post("http://localhost:5000/api/set-user-id", { IDUser: userExists.IDUser });
       navigate("/my-sensors");
     } else {
       setError("Usuario o contraseña invalidos");
