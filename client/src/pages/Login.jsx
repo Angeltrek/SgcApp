@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -6,30 +6,29 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [Email, setEmail] = useState("");
   const [CurrentPassword, setCurrentPassword] = useState("");
-  const [UsersList, setUsersList] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    Axios.get("http://localhost:5000/api/login").then((response) => {
-      setUsersList(response.data);
-    });
-  }, []);
+  const submitUserData = (e) => {
 
-  const submitUserData = () => {
-    const userExists = UsersList && UsersList.find(
-      (user) => user.Email === Email && user.CurrentPassword === CurrentPassword
-    );
-    
-    if (userExists) {
-      Axios.post("http://localhost:5000/api/set-user-id", { IDUser: userExists.IDUser });
-      navigate("/my-sensors");
-    } else {
-      setError("Usuario o contraseña invalidos");
+    e.preventDefault();
+
+    Axios.post("http://localhost:5000/api/login", {
+      Email: Email,
+      CurrentPassword: CurrentPassword
+    }).then((response) => {
+      console.log(response);
+      if(response.data) {
+        const token = response.data.token;
+        localStorage.setItem('token', token);
+        navigate("/my-sensors");
+      }
+    }).catch((error) => {
+      setError("Usuario o contraseña invalidos.");
       setTimeout(() => {
         setError(null);
       }, 3000); // Restablecer el estado de error después de 3 segundos
-    }
+    });
   };
 
   const goToRegister = () => {

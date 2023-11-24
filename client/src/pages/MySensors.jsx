@@ -11,7 +11,11 @@ const MySensors = () => {
   const [sensorInfoKey, setSensorInfoKey] = useState(0);
 
   useEffect(() => {
-    Axios.get("http://localhost:5000/api/get/sensor-info")
+    Axios.get("http://localhost:5000/api/get/sensor-info", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((response) => {
         console.log("Datos recibidos:", response.data);
         setSensorData(response.data);

@@ -16,47 +16,40 @@ import {
 export default function Histogram({ sensorID }) {
   const [sensorData, setSensorData] = useState([]);
 
+  // Efecto secundario para cargar datos del sensor y configurar intervalo de actualización
   useEffect(() => {
-    Axios.post("http://localhost:5000/api/set/sensor-data", {
-      sensorID: sensorID
-    })
-    .then(() => {
-      fetchSensorData();
-    })
-    .catch((error) => {
-      console.error("Error al enviar datos del sensor:", error);
-    });
-  }, [sensorID]); // Añade los corchetes para indicar que el efecto no depende de ninguna variable específica
-  
+    // Función para obtener datos del sensor desde la API
+    const fetchSensorData = () => {
+      Axios.get("http://localhost:5000/api/get/sensor-data", {
+        params: {
+          sensorID: sensorID,
+        },
+      })
+        .then((response) => {
+          console.log("Datos recibidos:", response.data);
+          // Obtén los últimos 10 datos de humedad
+          const humidities = response.data
+            .map((result) => result.Humidity)
+            .slice(-10);
 
-  const fetchSensorData = () => {
-    Axios.get("http://localhost:5000/api/get/sensor-data")
-    .then((response) => {
-      console.log("Datos recibidos:", response.data);
-      // Obtén los últimos 10 datos de humedad
-      const humidities = response.data
-        .map((result) => result.Humidity)
-        .slice(-10);
-  
-      setSensorData(humidities);
-    })
-    .catch((error) => {
-      console.log("Error al obtener datos del sensor:", error);
-    });
-  };
+          setSensorData(humidities);
+        })
+        .catch((error) => {
+          console.log("Error al obtener datos del sensor:", error);
+        });
+    };
 
-  useEffect(() => {
     console.log("Datos enviados");
     // Después de enviar datos, actualiza los datos del sensor
     fetchSensorData();
     // Configurar intervalo para actualizar cada 5 minutos (ajusta según tus necesidades)
     const intervalId = setInterval(() => {
       fetchSensorData();
-    }, 3000); // 300000 ms = 5 minutos
+    }, 3000); // 3000 ms = 3 segundos
 
     // Limpia el intervalo al desmontar el componente
     return () => clearInterval(intervalId);
-  }, []);
+  }, [sensorID]); // Agrega sensorID como dependencia para evitar advertencias de linting
 
   // Registra los plugins de ChartJS
   ChartJS.register(
@@ -84,18 +77,7 @@ export default function Histogram({ sensorID }) {
   };
 
   // Etiquetas
-  const labels = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10"
-  ];
+  const labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 
   // Datos del gráfico
   const data = {

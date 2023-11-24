@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const submitUserData = () => {
-    Axios.post("http://localhost:5000/api/insert", {
+    Axios.post("http://localhost:5000/api/register", {
       UserName: UserName,
       Email: Email,
       CurrentPassword: CurrentPassword,
