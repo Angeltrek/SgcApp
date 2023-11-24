@@ -20,7 +20,7 @@ export default function Histogram({ sensorID }) {
   useEffect(() => {
     // Función para obtener datos del sensor desde la API
     const fetchSensorData = () => {
-      Axios.get("http://localhost:5000/api/get/sensor-data", {
+      Axios.get("https://n18rflgw-5000.usw3.devtunnels.ms/api/get/sensor-data", {
         params: {
           sensorID: sensorID,
         },

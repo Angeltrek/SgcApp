@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const submitUserData = () => {
-    Axios.post("http://localhost:5000/api/register", {
+    Axios.post("https://n18rflgw-5000.usw3.devtunnels.ms/api/register", {
       UserName: UserName,
       Email: Email,
       CurrentPassword: CurrentPassword,
