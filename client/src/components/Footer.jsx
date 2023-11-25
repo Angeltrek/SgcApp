@@ -21,11 +21,6 @@ export default function Footer({pth}) {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/documentation" className={`nav-link ${pth === '/documentation' ? 'active' : ''}`}>
-                Documentation
-              </Link>
-            </li>
-            <li className="nav-item">
               <Link to="/login" className={`nav-link ${pth === '/login' ? 'active' : ''}`}>
                 My Sensors
               </Link>
