@@ -1,3 +1,7 @@
+/**
+ * @brief Paquetes
+ */
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -7,11 +11,21 @@ const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+/**
+ * @brief Credenciales de la BD
+ */
+
+const dbc = require('./dbCredentials.json');
+
+/**
+ * @brief Conexión a la base de datos
+ */
+
 const db = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "CRUDDataBase",
+  host: dbc.host,
+  user: dbc.user,
+  password: dbc.password,
+  database: dbc.database
 });
 
 /*
@@ -21,11 +35,20 @@ const corsOptions = {
   headers: ['Content-Type', 'Authorization'],
   credentials: true,
   optionsSuccessStatus: 204,
-};*/
+};
+*/
+
+/**
+ * @brief Dependencias de la app
+ */
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+/**
+ * @brief Añade un nuevo usuario en la tabla 
+ */
 
 app.post("/api/register", (req, res) => {
   const { UserName, Email, CurrentPassword } = req.body;
@@ -50,6 +73,10 @@ app.post("/api/register", (req, res) => {
     }
   });
 });
+
+/**
+ * @brief Inicia sesión a través de 
+ */
 
 app.post("/api/login", (req, res) => {
   const { Email, CurrentPassword } = req.body;
@@ -98,6 +125,10 @@ app.post("/api/login", (req, res) => {
   });
 });
 
+/**
+ * @brief Get
+ */
+
 app.get("/api/get/sensor-info", (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
 
@@ -145,6 +176,10 @@ app.get("/api/get/sensor-data", (req, res) => {
   });
 });
 
+/**
+ * @brief Insertar dato obtenido por el sensor (esta dirección será accedida por el sensor)
+ */
+
 
 app.post("/api/insert-data", (req, res) => {
   const { data1, data2 } = req.body;
@@ -163,6 +198,10 @@ app.post("/api/insert-data", (req, res) => {
   });
 });
 
+/**
+ * @brief Comprueba la conexión con la base de datos
+ */
+
 app.listen(port, () => {
-  console.log("running on port 5000");
+  console.log("running on port " + port);
 });
