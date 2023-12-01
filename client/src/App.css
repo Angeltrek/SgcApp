@@ -1,0 +1,775 @@
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --dark-green: #40513b;
+  --green: #609966;
+  --light-green: #9dc08b;
+  --grey: #edf1d6;
+  --red: rgb(229, 67, 67);
+  --blue: rgb(67, 117, 244);
+}
+/*
+.landscape {
+  background: url(../images/background-1.jpg);
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+}*/
+
+.container {
+  margin: auto;
+  width: 80%;
+}
+
+/* Estilos del formulario de inicio de sesión */
+.login {
+  margin: auto;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  background: var(--grey);
+  text-align: center;
+  padding: 3rem;
+  width: 30%;
+  position: relative;
+}
+
+.sgc-title {
+  color: var(--dark-green);
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 3.75rem;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+}
+
+/* Estilos para el botón de inicio de sesión con Google */
+.google-container {
+  position: relative;
+}
+
+.google-logo {
+  width: 1rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15%;
+}
+
+.google-sign-in {
+  background: #fff;
+  border: 2px solid var(--grey);
+  cursor: pointer;
+  font-family: 'Nunito Sans', sans-serif;
+  outline: none;
+  width: 80%;
+  height: 2.5rem;
+}
+
+/* Estilos de campos de entrada de texto */
+.input-field {
+  font-family: 'Nunito Sans', sans-serif;
+  margin: 1.5rem 0;
+}
+
+.input-field input {
+  border: 2px solid var(--grey);
+  outline: none;
+  text-align: center;
+  width: 80%;
+  height: 2rem;
+}
+
+.error-input {
+  color: var(--red);
+  border: 2px solid var(--red);
+}
+
+.error-message {
+  color: var(--red);
+  font-size: 0.75rem;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  position: relative;
+}
+
+.icon {
+  width: 1rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15%;
+  opacity: 0.6;
+}
+
+/* Estilos de los botones de registro e inicio de sesión */
+.button-field {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.button-field input {
+  border: none;
+  border-radius: 0.5rem;
+  font-family: 'Nunito Sans', sans-serif;
+  padding: 0.75rem 1rem;
+  outline: none;
+  cursor: pointer;
+}
+
+#register {
+  background: none;
+}
+
+#register:hover {
+  color: var(--dark-green);
+}
+
+#login {
+  background: var(--green);
+  color: #fff;
+}
+
+#login:hover {
+  background: var(--grey);
+  color: var(--dark-green);
+}
+
+/* Estilos de la barra de navegación */
+.navbar {
+  background-color: var(--dark-green);
+  position: relative;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sgc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.5rem;
+  color: #fff;
+  padding: 1.25rem 0;
+}
+
+.nav-item-container {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  font-family: 'Nunito Sans', sans-serif;
+  width: 40%;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--light-green);
+}
+
+.nav-link:hover {
+  color: #fff;
+}
+
+.active {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Navbar lateral */
+
+.mySensors {
+  overflow: hidden;
+}
+
+.top-container {
+  width: 100%;
+  background: var(--dark-green);
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 100;
+}
+
+.toggle-container {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lateral-toggle {
+  color: #fff;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  margin-right: 1rem;
+  visibility: hidden;
+}
+
+.lateral-toggle:hover {
+  cursor: pointer;
+}
+
+.sideNavbar {
+  width: 20rem;
+  height: 100vh;
+  position: fixed;
+  background: var(--grey);
+  overflow: auto;
+  transition: transform 0.3s ease-in-out;
+  z-index: 100;
+  margin-top: 4.25rem;
+}
+
+.show-lateral-menu {
+  transform: translateX(0);
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sensorButton {
+  padding: 1rem 0;
+  border-radius: 0.25rem;
+  width: 100%;
+  font-family: 'Nunito Sans', sans-serif;
+  border: none;
+  margin: 1rem 0;
+  background: #fff;
+}
+
+.addSensor {
+  background: transparent;
+  color: var(--green);
+}
+
+.deleteSensor {
+  background: var(--red);
+  color: #fff;
+  width: 10rem;
+}
+
+.modifySensor {
+  background: var(--blue);
+  color: #fff;
+  width: 10rem;
+}
+
+.sensorButton:hover {
+  cursor: pointer;
+}
+
+/* Sensor Info Container*/
+
+.sensorInfoContainer {
+  margin-top: 4.25rem;
+  width: (100% - 20rem);
+  padding: 1rem;
+  transition: transform 0.3s ease-in-out;
+  font-family: 'Nunito Sans', sans-serif;
+  z-index: -100;
+  transform: translateX(20rem);
+}
+
+.info-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.info-container h3 {
+  width: 70%;
+  color: var(--dark-green);
+  margin: 2rem 0;
+}
+
+.info-container p {
+  width: 70%;
+  margin-bottom: 1rem;
+}
+
+.info-container img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.sideNavbar.show-lateral-menu + .sensorInfoContainer {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Estilos del banner */
+.banner {
+  width: 100%;
+  position: relative;
+  background: #212c22;
+  height: calc(100vh - 4rem);
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  opacity: 0.65;
+  object-fit: cover;
+  z-index: -100;
+}
+
+.banner-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.subtitle {
+  font-family: 'Nunito Sans', sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.white {
+  color: #fff;
+}
+
+.black {
+  color: #000;
+}
+
+/* Estilos del contenido */
+.content-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.content {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.content-left {
+  text-align: justify;
+}
+
+.content-left h2 {
+  width: 50%;
+}
+
+.content-left h3 {
+  width: 50%;
+}
+
+.thumbnail {
+  width: 140px;
+}
+
+.rounded-thumbnail {
+  width: 140px;
+  border-radius: 100%;
+}
+
+.green-container {
+  background: var(--light-green);
+  color: var(--dark-green);
+}
+
+.vertical-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title {
+  font-family: 'Nunito Sans', sans-serif;
+  padding: 1.25rem 0;
+}
+
+.text {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1rem;
+  width: 50%;
+}
+
+.mobile-menu-toggle {
+  display: none;
+}
+
+.discord-section {
+  background: #545454;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.discord-section h3 {
+  font-size: 2rem;
+  padding: 1.5rem 0;
+  width: 50%;
+}
+
+.discord-logo {
+  font-size: 4rem;
+  border-radius: 2rem;
+  background: #fff;
+  color: #545454;
+  padding: 1rem;
+}
+
+.bubble-top,
+.bubble-bottom {
+  width: 30rem;
+  height: 30rem;
+  border-radius: 100%;
+  opacity: 0.25;
+  position: absolute;
+  z-index: -100;
+}
+
+.bubble-top {
+  background: #38b6ff;
+  top: 0;
+  right: 0;
+}
+
+.bubble-bottom {
+  background: #5271ff;
+  bottom: 0;
+  left: 0;
+}
+
+.discord-button {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  color: #fff;
+  padding: 0.75rem 5rem;
+  margin-top: 2rem;
+  background-color: #5271ff;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.discord-button:hover {
+  cursor: pointer;
+  background: #38b6ff;
+}
+
+.email-contact-section {
+  background: var(--grey);
+  color: var(--dark-green);
+}
+
+.email-contact-section h3,
+.email-contact-section i {
+  font-size: 2.25rem;
+  padding: 0.5rem 0;
+}
+
+.email-contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.email-contact-form input {
+  outline: none;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  border: none;
+  width: 60%;
+}
+
+.email-contact-form input[type='submit']:hover {
+  background: var(--green);
+  color: var(--grey);
+  cursor: pointer;
+}
+
+.email-contact-form textarea {
+  resize: none;
+  outline: none;
+  border: none;
+  width: 60%;
+}
+
+footer {
+  height: 100vh;
+  background: var(--dark-green);
+  position: relative;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.footer-item-container {
+  list-style: none;
+}
+
+.footer-item-container li {
+  padding: 0.5rem;
+}
+
+.socials {
+  font-size: 1.5rem;
+}
+
+.copyright {
+  bottom: 1rem;
+  left: 2rem;
+  color: var(--grey);
+  position: absolute;
+}
+
+/* Histograma */
+
+.histogram {
+  margin: 2rem 0;
+}
+
+.histogram h3 {
+  color: var(--dark-green);
+}
+
+.histogram-container {
+  width: 70%; /* Ajusta el ancho según tus necesidades */
+  height: auto; /* Ajusta la altura según tus necesidades */
+  overflow: hidden; /* Evita que el gráfico se desborde si es necesario */
+}
+
+.parameter-container {
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.parameter-container h4 {
+  color: var(--green);
+}
+
+.parameter-input {
+  border: 2px solid var(--grey);
+  padding: 0.25rem 0;
+  margin: 0.25rem 0;
+  outline: none;
+  height: 2rem;
+}
+
+/* Estilos para la barra de desplazamiento */
+/* Estilo de la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Estilo del "pulgarcito" de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+  background-color: var(--light-green);
+  border: none;
+}
+
+/* Cambia el color del "pulgarcito" cuando se pasa el ratón por encima */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--green);
+}
+
+/* Estilo del fondo de la barra de desplazamiento */
+::-webkit-scrollbar-track {
+  background-color: var(--grey);
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+  .login-form {
+    width: 100%;
+  }
+
+  .input-field input {
+    width: 100%;
+  }
+
+  .google-sign-in {
+    width: 100%;
+  }
+
+  .google-logo,
+  .icon {
+    left: 10px;
+  }
+
+  .button-field {
+    flex-direction: column;
+  }
+
+  .button-field input {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .thumbnail,
+  .rounded-thumbnail {
+    width: 80px;
+  }
+
+  .reverse {
+    flex-direction: column-reverse;
+  }
+
+  .vertical-img {
+    width: 100%;
+    height: 50vh;
+  }
+
+  .content-container {
+    height: auto;
+  }
+
+  .content {
+    width: 100%;
+    height: auto;
+    padding: 3rem 0;
+  }
+
+  .image-container {
+    padding: 0;
+  }
+
+  .title {
+    padding: 1rem 0;
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .text {
+    font-size: 1rem;
+  }
+
+  .nav-item-container {
+    width: 60%;
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .menu-icon {
+    display: block;
+    margin: 5px auto;
+    color: var(--grey);
+    font-size: 1.5rem;
+  }
+
+  .show-mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--green);
+    z-index: 100;
+  }
+
+  .show-mobile-menu .nav-item {
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .show-mobile-menu .nav-link {
+    color: #fff;
+  }
+
+  .discord-section h3 {
+    font-size: 1rem;
+  }
+
+  .discord-logo {
+    font-size: 2rem;
+  }
+
+  .email-contact-section h3,
+  .email-contact-section i {
+    font-size: 1.25rem;
+  }
+
+  .sideNavbar {
+    width: 100vw;
+    transform: translateX(-100%);
+  }
+
+  .show-lateral-menu {
+    transform: translateX(0);
+  }
+
+  .lateral-toggle {
+    visibility: visible;
+  }
+
+  .sensorInfoContainer {
+    transform: translateX(0);
+  }
+
+  .info-container {
+    width: 100%;
+  }
+
+  .histogram-container {
+    width: 100%;
+  }
+
+  .parameter-container {
+    width: 100%;
+    flex-direction: column;
+  }
+}
