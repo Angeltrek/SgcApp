@@ -54,6 +54,12 @@ Before running the code, ensure you have the following prerequisites:
     - WiFi
     - HTTPClient
 
+5. Every sensor has his own ID, so you can modify it in the code (Follow the MER):
+
+    ```cpp
+    String IDSensor = "your-sensor-id";
+    ```
+
 ## Uploading and Running
 
 1. Connect your ESP32 board to your computer.
