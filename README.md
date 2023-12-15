@@ -73,4 +73,47 @@ Ensure you have the following prerequisites before running the code:
 
 The code includes a `sendHttpRequest` function that collects soil humidity data and sends it to the specified Node.js server. You can monitor the data on the server side by checking the logs and database entries.
 
-Congratulations! You have successfully set up and run the SgcApp code on your ESP32, enabling the collection and transmission of soil humidity data for your IoT project.
+Congratulations! You have successfully set up and run the SgcApp code on your ESP32, enabling the collection and transmission of soil humidity data.
+
+# Server Dependencies Installation Guide
+
+The server for the SgcApp relies on several Node.js packages to function properly. Follow the steps below to install the necessary dependencies.
+
+## Prerequisites
+
+Before proceeding, ensure that you have [Node.js](https://nodejs.org/) installed on your system. You can download it from the official website.
+
+## Installation Steps
+
+1. **Clone the Repository:**
+    ```bash
+    git clone https://github.com/Angeltrek/SgcApp.git
+    cd SgcApp/server
+    ```
+
+2. **Install Dependencies:**
+    ```bash
+    npm install
+    ```
+    This command installs both the runtime dependencies and development dependencies specified in the `package.json` file.
+
+3. **Verify Installation:**
+    Ensure that the installation process completes without errors.
+
+## Usage
+
+### Running in Production
+
+To start the server in production mode, use the following command:
+
+```bash
+npm start
+```
+
+### Running in Development (with Nodemon)
+
+For development purposes, Nodemon is included as a development dependency. It automatically restarts the server when changes are detected. Use the following command to run the server in development mode:
+
+```bash
+npm run dev
+```
